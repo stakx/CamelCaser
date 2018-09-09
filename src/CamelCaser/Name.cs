@@ -12,36 +12,36 @@ namespace CamelCaser
         {
             Debug.Assert(name != null);
 
-            if (name.Length == 0 || char.IsLower(name[0]))
+            // `n` is the length of `name`.
+            var n = name.Length;
+
+            // `l` is the index of the first lower-case char; or `n` if there is none.
+            int l;
+            for (l = 0; l < n && char.IsUpper(name[l]); ++l);
+
+            if (l == 0)
             {
+                // `name` already begins with a lower-case char; no need to do anything:
                 return name;
             }
-
-            if (name.Length < 2)
+            else if (l == n)
             {
+                // `name` does not contain any lower-case chars; lower-case it as a whole:
                 return name.ToLowerInvariant();
             }
-
-            var result = new StringBuilder(name.Length);
-
-            int i, n;
-
-            result.Append(char.ToLower(name[0]));
-
-            for (i = 1, n = name.Length - 1; i <= n; ++i)
+            else if (1 < l)
             {
-                if (i != n && char.IsLower(name[i + 1]))
-                {
-                    break;
-                }
-
-                result.Append(char.ToLower(name[i]));
+                // `name` begins with several upper-case chars; lower-case all but the last:
+                --l;
             }
 
-            if (i < name.Length)
+            // lower-case the first `l` chars, and append the remaining chars unmodified:
+            var result = new StringBuilder(n);
+            for (int i = 0; i < l; ++i)
             {
-                result.Append(name, i, name.Length - i);
+                result.Append(char.ToLowerInvariant(name[i]));
             }
+            result.Append(name, l, n - l);
 
             return result.ToString();
         }
