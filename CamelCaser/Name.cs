@@ -14,6 +14,11 @@ namespace CamelCaser
                 return name;
             }
 
+            if (name.Length < 2)
+            {
+                return name.ToLowerInvariant();
+            }
+
             throw new NotImplementedException();
         }
     }

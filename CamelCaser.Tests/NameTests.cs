@@ -19,5 +19,13 @@ namespace CamelCaser
         {
             Assert.Equal(name, name.ToLowerCamelCase());
         }
+
+        [Theory]
+        [InlineData("I")]
+        [InlineData("X")]
+        public void Name_with_single_upper_case_is_lower_cased(string name)
+        {
+            Assert.Equal(name.ToLowerInvariant(), name.ToLowerCamelCase());
+        }
     }
 }
