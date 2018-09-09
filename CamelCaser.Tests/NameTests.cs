@@ -1,10 +1,10 @@
 // Copyright (c) 2018 stakx
 // License available at https://github.com/stakx/CamelCaser/blob/master/LICENSE.md.
 
-using Xunit;
-
 namespace CamelCaser
 {
+    using Xunit;
+
     public class NameTests
     {
         [Fact]
