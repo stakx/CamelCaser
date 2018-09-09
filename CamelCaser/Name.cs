@@ -9,7 +9,7 @@ namespace CamelCaser
         {
             Debug.Assert(name != null);
 
-            if (name.Length == 0)
+            if (name.Length == 0 || char.IsLower(name[0]))
             {
                 return name;
             }
