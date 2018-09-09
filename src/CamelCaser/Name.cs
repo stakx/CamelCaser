@@ -24,16 +24,11 @@ namespace CamelCaser
 
             var result = new StringBuilder(name.Length);
 
-            if (char.IsLower(name[1]))
-            {
-                result.Append(char.ToLower(name[0]));
-                result.Append(name, 1, name.Length - 1);
-                return result.ToString();
-            }
-
             int i, n;
 
-            for (i = 0, n = name.Length - 1; i <= n; ++i)
+            result.Append(char.ToLower(name[0]));
+
+            for (i = 1, n = name.Length - 1; i <= n; ++i)
             {
                 if (i != n && char.IsLower(name[i + 1]))
                 {
