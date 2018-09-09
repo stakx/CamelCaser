@@ -35,5 +35,16 @@ namespace CamelCaser
         {
             Assert.Equal(expected, name.ToLowerCamelCase());
         }
+
+        [Theory]
+        [InlineData("I", "i")]
+        [InlineData("X", "x")]
+        [InlineData("ID", "id")]
+        [InlineData("COM", "com")]
+        [InlineData("IDE", "ide")]
+        public void Name_with_only_upper_case_has_all_lower_cased(string name, string expected)
+        {
+            Assert.Equal(expected, name.ToLowerCamelCase());
+        }
     }
 }

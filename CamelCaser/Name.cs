@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace CamelCaser
@@ -26,6 +27,11 @@ namespace CamelCaser
                 result.Append(char.ToLower(name[0]));
                 result.Append(name, 1, name.Length - 1);
                 return result.ToString();
+            }
+
+            if (name.All(c => char.IsUpper(c)))
+            {
+                return name.ToLowerInvariant();
             }
 
             throw new NotImplementedException();
