@@ -2,6 +2,8 @@
 
 A small .NET library for converting identifiers to "camelCase".
 
+[![AppVeyor](https://img.shields.io/appveyor/ci/stakx/CamelCaser.svg)](https://ci.appveyor.com/project/stakx/camelcaser) ![AppVeyor tests](https://img.shields.io/appveyor/tests/stakx/CamelCaser.svg)
+
 ```csharp
 partial interface ICamelCaser { }
 
