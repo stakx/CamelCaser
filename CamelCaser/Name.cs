@@ -1,6 +1,4 @@
-using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
 
 namespace CamelCaser
@@ -21,20 +19,33 @@ namespace CamelCaser
                 return name.ToLowerInvariant();
             }
 
+            var result = new StringBuilder(name.Length);
+
             if (char.IsLower(name[1]))
             {
-                var result = new StringBuilder(name.Length);
                 result.Append(char.ToLower(name[0]));
                 result.Append(name, 1, name.Length - 1);
                 return result.ToString();
             }
 
-            if (name.All(c => char.IsUpper(c)))
+            int i, n;
+
+            for (i = 0, n = name.Length - 1; i <= n; ++i)
             {
-                return name.ToLowerInvariant();
+                if (i != n && char.IsLower(name[i + 1]))
+                {
+                    break;
+                }
+
+                result.Append(char.ToLower(name[i]));
             }
 
-            throw new NotImplementedException();
+            if (i < name.Length)
+            {
+                result.Append(name, i, name.Length - i);
+            }
+
+            return result.ToString();
         }
     }
 }

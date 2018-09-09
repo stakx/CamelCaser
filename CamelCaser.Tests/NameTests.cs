@@ -46,5 +46,18 @@ namespace CamelCaser
         {
             Assert.Equal(expected, name.ToLowerCamelCase());
         }
+
+        [Theory]
+        [InlineData("NPx", "nPx")]
+        [InlineData("AName", "aName")]
+        [InlineData("COMPlus", "comPlus")]
+        [InlineData("IDEHost", "ideHost")]
+        [InlineData("NPixels", "nPixels")]
+        [InlineData("IDEHostConnection", "ideHostConnection")]
+        [InlineData("IDVerifier", "idVerifier")]
+        public void Name_that_starts_with_several_upper_case_has_all_lower_cased_that_are_not_followed_by_lower_case(string name, string expected)
+        {
+            Assert.Equal(expected, name.ToLowerCamelCase());
+        }
     }
 }
