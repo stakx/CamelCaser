@@ -62,5 +62,17 @@ namespace CamelCaser
         {
             Assert.Equal(expected, name.ToLowerCamelCase());
         }
+
+        [Theory]
+        [InlineData("I", "i")]
+        [InlineData("Id", "id")]
+        [InlineData("IId", "id")]
+        [InlineData("IdeHost", "ideHost")]
+        [InlineData("ICOMHost", "comHost")]
+        [InlineData("IEquatable", "equatable")]
+        public void Drops_I_prefix_from_interface_names_if_name_starts_with_at_least_two_uppercase_followed_by_lowercase(string name, string expected)
+        {
+            Assert.Equal(expected, name.ToLowerCamelCase(CamelCaseOptions.InterfaceName));
+        }
     }
 }
